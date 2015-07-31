@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "socketio-client": "~1.2.1",
-    "angular": "~1.4.3"
+    "angular": "~1.4.3",
+    "angular-sanitize": "~1.4.3"
   }
 }

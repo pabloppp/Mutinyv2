@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script src="bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="/app.js" type="text/javascript" charset="utf-8"></script>
 
@@ -22,20 +23,20 @@
 		<h1 class="bigtitle">MUTINY</h1>
 
 		<div class="cornerText">
-			...
+			{{main.time}}
 			<br>Dallas
 		</div>
 		<br>
 		<div class="colContainer">
 			<div class="col2">
-				<div class="section green isbutton">Parallax</div>
-				<div class="section pink isbutton">Tank Battle</div>
+				<div class="section green isbutton" ng-click="main.unavailable()">Parallax [!]</div>
+				<div class="section pink isbutton" ng-click="main.unavailable()">Tank Battle [!]</div>
 				<a href="/community"><div class="section cyan isbutton">Community</div></a>
-				<div class="section purple isbutton">Chess</div>
-				<div class="section yellow isbutton">Checkers</div>
-				<div class="section orange isbutton">Backgammon</div>
-				<div class="section brown isbutton">Account Info</div>
-				<div class="section red-light isbutton">Sign Out</div>
+				<div class="section purple isbutton" ng-click="main.unavailable()">Chess [!]</div>
+				<div class="section yellow isbutton" ng-click="main.unavailable()">Checkers [!]</div>
+				<div class="section orange isbutton" ng-click="main.unavailable()">Backgammon [!]</div>
+				<a href="#"><div class="section brown isbutton">Account Info</div></a>
+				<a href="#"><div class="section red-light isbutton">Sign Out</div></a>
 			</div>
 			<div class="col2">
 				<div class="section transparent">
@@ -44,7 +45,19 @@
 
 				<div class="section big magenta">
 					<h3>News & Weather</h3>
-					<p>blabla<br>blabclakejnfjnaskjnskd<br>sldjfnlaksdjfbljksdf...</p>
+					<p>
+					Weather: 
+					<span ng-show="main.forecast">
+						{{main.forecast.text}} <br>
+						{{main.forecast.rains}} chances of Rain <br>
+					</span> 
+					<span ng-hide="main.forecast">Loading...<br><br></span>
+					...<br>
+					News: 
+					{{main.latestNew}}
+					<span ng-hide="main.latestNew">Loading...</span>
+
+					</p>
 				</div>
 
 				<div class="section big green-light">
@@ -60,6 +73,17 @@
 		</div>
 	</div>
 	<span ng-bind="'[]'+main.user.name"></span>
+
+	<div class="warning">
+		<div class="popup" ng-show="main.error">
+			<div class="content">
+				<div class="upperbar">
+				CRSHREPRT 0x04b <div class="close" ng-click="main.error = false">X</div>
+				</div>
+				<p ng-bind-html="main.error"></p>
+			</div>
+		</div>
+	</div>
 	
 </body>
 </html>

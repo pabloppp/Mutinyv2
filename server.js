@@ -4,6 +4,9 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
 var path = require('path');
+var low = require('lowdb');
+
+var db = low('db.json')
 
 var port = process.env.PORT || 3000;
 
@@ -23,6 +26,11 @@ fs.readdirSync(__dirname+"/public/modules/").filter(function(file) {
     res.sendFile('index.html', { root: __dirname+"/public/modules/"+file });  
   });
 
+});
+
+//EXTRA API ROUTES
+app.get('/db/news', function(req, res){
+  res.json(db('news').first());
 });
 
 
