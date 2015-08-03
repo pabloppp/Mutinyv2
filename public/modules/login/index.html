@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="loginCtrl as login" ng-class="{'oldstyle' : login.oldStyle}"> <!-- class="oldstyle" -->
+<head>
+	<meta charset="UTF-8">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+
+	<title>Mutiny</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css" />
+
+	<script src="bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/app.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="/modules/login/controller.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+
+	<div class="loadscreen" ng-class="{'loaded' : login.loaded}"></div>
+
+	<div class="content">
+		<h1 class="bigtitle" ng-click="login.toggleOldStyle()">MUTINY</h1>
+
+		<div class="cornerText">
+			{{login.time}}
+			<br>Dallas
+		</div>
+		<br>
+		<form class="regform" ng-submit="login.send()">
+			<h3>LOGIN / REGISTER</h3>
+			
+			<span class="label" ng-show="login.mode == 'register'">User name:</span>
+			<input type="text" placeholder="Cammeron" ng-show="login.mode == 'register'" ng-model="login.data.name">
+			<span class="label">Email:</span>
+			<input type="email" placeholder="cammeron_howe@..." ng-model="login.data.email" required>
+			<span class="label">Password:</span>
+			<input type="password" placeholder="****" ng-model="login.data.password" required>
+			<span class="label" ng-show="login.mode == 'register'">Repeat password:</span>
+			<input type="password" placeholder="****" ng-show="login.mode == 'register'" ng-model="login.data.password2">
+			<button type="submit" class="green">
+			{{login.mode == 'register' ? "REGISTER" : "LOGIN"}}
+			</button>
+
+			<span class="middled">...or 
+			<a ng-show="login.mode == 'register'" ng-click="login.changeMode('login')">login</a>
+			<a ng-show="login.mode == 'login'" ng-click="login.changeMode('register')">register</a>
+			</span>
+		</form>
+		<!--
+		<div class="colContainer">
+			<div class="col2">
+				<div class="section green isbutton" ng-click="login.unavailable()">Parallax [!]</div>
+				<div class="section pink isbutton" ng-click="login.unavailable()">Tank Battle [!]</div>
+				<a href="/community"><div class="section cyan isbutton">Community</div></a>
+				<div class="section purple isbutton" ng-click="login.unavailable()">Chess [!]</div>
+				<div class="section yellow isbutton" ng-click="login.unavailable()">Checkers [!]</div>
+				<div class="section orange isbutton" ng-click="login.unavailable()">Backgammon [!]</div>
+				<a href="#"><div class="section brown isbutton">Account Info</div></a>
+				<a href="#"><div class="section red-light isbutton">Sign Out</div></a>
+			</div>
+			<div class="col2">
+				<div class="section transparent">
+				{{ login.date }}
+				</div>
+
+				<div class="section big magenta">
+					<h3>News & Weather</h3>
+					<p>
+					Weather: 
+					<span ng-show="login.forecast">
+						{{login.forecast.text}} <br>
+						{{login.forecast.rains}} chances of Rain <br>
+					</span> 
+					<span ng-hide="login.forecast">Loading...<br><br></span>
+					News: 
+					{{login.latestNew}}
+					<span ng-hide="login.latestNew">Loading...</span>
+
+					</p>
+				</div>
+
+				<div class="section big green-light">
+					<h3>The Money Pitt</h3>
+					<p>
+						<span class="line" ng-repeat="stock in login.stocks">
+							<span class="left">
+							{{stock.t}}<small> {{login.stockName(stock.t)}}</small>
+							</span>
+							<span class="right">{{stock.l}} ({{stock.c}})</span>		
+						</span>
+						<span class="line">
+							<span class="left">MTNY<small> Mutiny</small></span>
+							<span class="right">31.55 (+0.06)</span>	
+						</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		-->
+
+	</div>
+
+	<div class="warning">
+		<div class="popup" ng-class="{'show':login.error}">
+			<div class="content">
+				<div class="upperbar">
+				ACCSSERR 0x02b <div class="close" ng-click="login.error = ''">X</div>
+				</div>
+				<p ng-bind-html="login.error"></p>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

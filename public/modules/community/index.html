@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="app" ng-controller="communityCtrl as community" ng-class="{'oldstyle' : community.oldStyle}">
 <head>
 	<meta charset="UTF-8">
 	<meta name="msapplication-tap-highlight" content="no" />
@@ -20,7 +20,7 @@
 	<script src="modules/community/controller.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
-<body ng-controller="communityCtrl as community">
+<body>
 	Community WIP
 </body>
 </html>

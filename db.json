@@ -3,5 +3,18 @@
     {
       "content": "Community is UP and RUNNING again! F**CK YOU WestNet!"
     }
+  ],
+  "users": [
+    {
+      "id": "a75d4b57-7687-4afd-ba24-f0bd34c8b7ce",
+      "name": "pabloppp",
+      "email": "pablo@pernias.com",
+      "email_verify_token": "c3714c49-eac9-4f13-a6b1-7f3a7c7a8a68",
+      "location": {},
+      "password": "fa45bd951ed40c07c4f6e79aa5ed6bdd",
+      "roles": [
+        "user"
+      ]
+    }
   ]
 }

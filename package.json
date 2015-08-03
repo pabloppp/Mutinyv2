@@ -9,9 +9,12 @@
   "author": "Babbleberns",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.13.2",
     "express": "^4.12.4",
     "forever": "^0.14.1",
     "lowdb": "^0.10.2",
+    "md5": "^2.0.0",
+    "node-uuid": "^1.4.3",
     "socket.io": "^1.3.5"
   }
 }

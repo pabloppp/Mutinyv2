@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app"> <!-- class="oldstyle" -->
+<html lang="en" ng-app="app" ng-controller="mainCtrl as main" ng-class="{'oldstyle' : main.oldStyle}"> <!-- class="oldstyle" -->
 <head>
 	<meta charset="UTF-8">
     <meta name="msapplication-tap-highlight" content="no" />
@@ -17,10 +17,11 @@
 	<script src="/modules/main/controller.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
-<body ng-controller="mainCtrl as main">
+<body>
+	<div class="loadscreen" ng-class="{'loaded' : main.loaded}"></div>
 
 	<div class="content">
-		<h1 class="bigtitle">MUTINY</h1>
+		<h1 class="bigtitle" ng-click="main.toggleOldStyle()">MUTINY</h1>
 
 		<div class="cornerText">
 			{{main.time}}
@@ -52,7 +53,6 @@
 						{{main.forecast.rains}} chances of Rain <br>
 					</span> 
 					<span ng-hide="main.forecast">Loading...<br><br></span>
-					...<br>
 					News: 
 					{{main.latestNew}}
 					<span ng-hide="main.latestNew">Loading...</span>
@@ -63,9 +63,15 @@
 				<div class="section big green-light">
 					<h3>The Money Pitt</h3>
 					<p>
+						<span class="line" ng-repeat="stock in main.stocks">
+							<span class="left">
+							{{stock.t}}<small> {{main.stockName(stock.t)}}</small>
+							</span>
+							<span class="right">{{stock.l}} ({{stock.c}})</span>		
+						</span>
 						<span class="line">
-							<span class="left">The data</span>
-							<span class="right">0.01$</span>	
+							<span class="left">MTNY<small> Mutiny</small></span>
+							<span class="right">31.55 (+0.06)</span>	
 						</span>
 					</p>
 				</div>
@@ -75,10 +81,10 @@
 	<span ng-bind="'[]'+main.user.name"></span>
 
 	<div class="warning">
-		<div class="popup" ng-show="main.error">
+		<div class="popup" ng-class="{'show':main.error}">
 			<div class="content">
 				<div class="upperbar">
-				CRSHREPRT 0x04b <div class="close" ng-click="main.error = false">X</div>
+				CRSHREPRT 0x04b <div class="close" ng-click="main.error = ''">X</div>
 				</div>
 				<p ng-bind-html="main.error"></p>
 			</div>
